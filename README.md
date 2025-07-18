@@ -1,4 +1,4 @@
-# 🛍️ Frontend - Gestión de Productos
+# 🛍️ Frontend - Product Manager
 
 Este proyecto es un frontend en React para la gestión de productos, que se conecta a un backend en Spring Boot corriendo en `http://localhost:8080`.
 

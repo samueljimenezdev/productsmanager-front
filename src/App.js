@@ -1,8 +1,8 @@
-
+import { ProductForm } from "./components/product-form/ProductForm";
 
 function App() {
   return (
-    <h1>Hola mundo</h1>
+    <ProductForm/>
   );
 }
 

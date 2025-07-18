@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { createProduct } from "../../services/create-product";
 
-export const ProductForm = () => {
+export const ProductForm = ({products, setProducts}) => {
+
     const [nombre, setNombre] = useState("");
     const [precio, setPrecio] = useState("");
     const [stock, setStock] = useState("");
+    const [isLoading, setIsLoading] = useState(false)
 
     const isNombreValido = (nombre) =>
         nombre.trim().length > 0;
@@ -14,7 +17,9 @@ export const ProductForm = () => {
     const isStockValido = (stock) =>
         Number.isInteger(Number(stock)) && Number(stock) > 0;
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
+
+        setIsLoading(true)
         e.preventDefault();
 
         if (!isNombreValido(nombre)) {
@@ -30,8 +35,18 @@ export const ProductForm = () => {
             return;
         }
 
-        // TO DO 
+        const response = await createProduct(nombre, precio, stock);
 
+        setIsLoading(false)
+
+        if (response){
+            alert("Producto creado exitosamente");
+            setProducts([...products, response])
+            
+        }else{
+            alert("Tuvimos un problema creando tu producto, intenta nuevamente mas tarde...")
+            return
+        }
         
         setNombre("");
         setPrecio("");
@@ -81,7 +96,7 @@ export const ProductForm = () => {
                 />
             </div>
 
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn btn-primary" disabled = {isLoading}>
                 Guardar
             </button>
 

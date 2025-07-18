@@ -2,7 +2,7 @@ import React from "react";
 
 export const ProductList = ({ products, onEdit, onDelete }) => {
   return (
-    <table className="table table-striped table-dark">
+    <table className="table table-striped">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -16,7 +16,7 @@ export const ProductList = ({ products, onEdit, onDelete }) => {
         {products && products.length > 0 ? (
           products.map((product, idx) => (
             <tr key={product.id || idx}>
-              <th scope="row">{idx + 1}</th>
+              <th scope="row">{product.id}</th>
               <td>{product.nombre}</td>
               <td>{product.precio}</td>
               <td>{product.stock}</td>
